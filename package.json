@@ -2,9 +2,9 @@
   "name": "backplate",
   "version": "1.0.0",
   "description": "> backtick templates",
-  "main": "dist/cjs/index.js",
-  "module": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/cjs/mod.js",
+  "module": "dist/mod.js",
+  "typings": "dist/mod.d.ts",
   "files": [
     "dist",
     "src"

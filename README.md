@@ -37,7 +37,7 @@ import { compile, render } from 'backplate'
 ### deno
 
 ```js
-import { compile, render } from 'https://denopkg.com/ahdinosaur/backplate/src/mod.ts'
+import { compile, render } from 'https://denopkg.com/ahdinosaur/backplate@main/src/mod.ts'
 ```
 
 ## usage

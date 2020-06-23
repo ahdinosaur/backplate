@@ -1,6 +1,6 @@
 {
   "name": "backplate",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "> backtick templates",
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",

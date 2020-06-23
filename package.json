@@ -1,0 +1,56 @@
+{
+  "name": "backplate",
+  "version": "0.0.0",
+  "description": "> backtick templates",
+  "main": "dist/cjs/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "npm-run-all": "^4.1.5",
+    "tsdx": "^0.13.2",
+    "typescript": "^3.9.5"
+  },
+  "scripts": {
+    "build": "npm-run-all -p build:*",
+    "build:mjs": "tsc -p tsconfig.json",
+    "build:cjs": "tsc -p tsconfig-cjs.json",
+    "format": "npm run lint -- --fix",
+    "lint": "tsdx lint src test",
+    "prepare": "npm run build",
+    "test": "npm-run-all test:types test:unit",
+    "test:unit": "tsdx test",
+    "test:types": "tsc -p tsconfig.json --noEmit"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahdinosaur/backplate.git"
+  },
+  "keywords": [
+    "template",
+    "template",
+    "string",
+    "template",
+    "literal",
+    "string",
+    "literal",
+    "es6",
+    "interpolation"
+  ],
+  "author": "Michael Williams",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ahdinosaur/backplate/issues"
+  },
+  "homepage": "https://github.com/ahdinosaur/backplate#readme"
+}

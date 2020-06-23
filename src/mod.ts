@@ -17,7 +17,7 @@ export interface CompileOptions {
 export function compile(options: CompileOptions) {
   const { source, keys } = options
   const renderer = createRenderer(source, keys)
-  return function template (data: Data) {
+  return function template(data: Data) {
     const values = Object.values(data)
     return renderer(...values)
   }

@@ -18,7 +18,7 @@ export function compile(options: CompileOptions) {
   const { source, keys } = options
   const renderer = createRenderer(source, keys)
   return function template(data: Data) {
-    const values = Object.values(data)
+    const values = pick(data, keys)
     return renderer(...values)
   }
 }
@@ -31,7 +31,7 @@ export interface RenderOptions {
 export function render(options: RenderOptions) {
   const { source, data } = options
   const keys = Object.keys(data)
-  const values = Object.values(data)
+  const values = pick(data, keys)
   const renderer = createRenderer(source, keys)
   return renderer(...values)
 }
@@ -42,4 +42,12 @@ function createRenderer(source: Source, keys: DataKeys) {
   const args = keys.join(', ')
   // eslint-disable-next-line no-new-func
   return new Function(args, 'return `' + source + '`;')
+}
+
+function pick(data: Data, keys: DataKeys) {
+  let values: Array<Data[keyof Data]> = []
+  keys.forEach(key => {
+    values.push(data[key])
+  })
+  return values
 }

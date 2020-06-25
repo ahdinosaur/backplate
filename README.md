@@ -42,13 +42,12 @@ import { compile, render } from 'https://denopkg.com/ahdinosaur/backplate@main/s
 
 ## usage
 
-### `template = compile({ source, keys })`
+### `template = compile({ source })`
 
 ```js
 const source = 'Hello ${world}!'
-const keys = ['world']
 
-const template = compile({ source, keys })
+const template = compile({ source })
 
 const data = { world: 'Earth' }
 const string = template(data)

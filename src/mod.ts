@@ -1,53 +1,18 @@
 /* public types */
 
 export type Source = string
-
-export interface Data {
-  [key: string]: string
-}
-export type DataKeys = Array<keyof Data>
+export type Data = object
+export type Template = (data: Data) => string
 
 /* public functions */
 
-export interface CompileOptions {
-  source: Source
-  keys: DataKeys
-}
-
-export function compile(options: CompileOptions) {
-  const { source, keys } = options
-  const renderer = createRenderer(source, keys)
-  return function template(data: Data) {
-    const values = pick(data, keys)
-    return renderer(...values)
-  }
-}
-
-export interface RenderOptions {
-  source: Source
-  data: Data
-}
-
-export function render(options: RenderOptions) {
-  const { source, data } = options
-  const keys = Object.keys(data)
-  const values = pick(data, keys)
-  const renderer = createRenderer(source, keys)
-  return renderer(...values)
-}
-
-/* private functions */
-
-function createRenderer(source: Source, keys: DataKeys) {
-  const args = keys.join(', ')
+export function compile(source: Source): Template {
   // eslint-disable-next-line no-new-func
-  return new Function(args, 'return `' + source + '`;')
+  return new Function(
+    'with (arguments[0]) { return `' + source + '`; }',
+  ) as Template
 }
 
-function pick(data: Data, keys: DataKeys) {
-  let values: Array<Data[keyof Data]> = []
-  keys.forEach(key => {
-    values.push(data[key])
-  })
-  return values
+export function render(source: Source, data: Data): string {
+  return compile(source)(data)
 }
